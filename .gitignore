@@ -1,52 +1,68 @@
-# Prerequisites
-*.d
+#include <stdio.h>
+#define tam 5
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+int i = 0;
+int ini = 0;
+int fim = 0;
+int valor;
+int fila[tam];
 
-# Linker output
-*.ilk
-*.map
-*.exp
+void enfileira() {
+    if (fim == tam) {
+        printf("Essa fila está cheia.\n");
+    } else {
+        printf("Informe um elemento: ");
+        scanf("%d", &valor);
+        fila[fim] = valor;
+        fim++;
+    }
+}
 
-# Precompiled Headers
-*.gch
-*.pch
+void mostrar() {
+    if (ini == fim) {
+        printf("A fila está vazia.\n");
+    } else {
+        for (i = ini; i < fim; i++) {
+            printf("%d ", fila[i]);
+        }
+        printf("\n");
+    }
+}
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+void remover(){
+    if(ini==fim){
+        printf("A fila está vazia.\n");
+    }
+    else{
+        fila[ini]=0;
+        ini++;
+    }
+}
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+int main() {
+    int opc;
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+    do {
+        printf("Opção: ");
+        scanf("%d", &opc);
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
+        switch (opc) {
+            case 1:
+                enfileira();
+                break;
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+            case 2:
+                mostrar();
+                break;
+                
+            case 3:
+                remover();
+                break;
+
+            default:
+                printf("Inválido, tente de novo\n");
+        }
+    } while (opc != 0);
+
+    return 0;
+}
